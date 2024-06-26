@@ -1,5 +1,5 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import React from "react";
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 
 const Navbar: React.FC = () => {
   return (
@@ -8,9 +8,15 @@ const Navbar: React.FC = () => {
         <Typography variant="h6" className="title">
           Dashboard Clima
         </Typography>
-        <Button color="inherit" className="button">Inicio</Button>
-        <Button color="inherit" className="button">Tabla</Button>
-        <Button color="inherit" className="button">Diagrama</Button>
+        <Button color="inherit" className="button">
+          Inicio
+        </Button>
+        <Button color="inherit" className="button">
+          Tabla
+        </Button>
+        <Button color="inherit" className="button">
+          Diagrama
+        </Button>
       </Toolbar>
     </AppBar>
   );
