@@ -5,14 +5,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 export default function ControlPanel() {
   {
-    /* Variable de estado y función de actualización */
+    /* Variable de estado y función de actualización 
+    let [selected, setSelected] = useState(-1);*/
   }
-  let [selected, setSelected] = useState(-1);
-  const descriptionRef = useRef<HTMLDivElement>(null);
+    const descriptionRef = useRef<HTMLDivElement>(null);
 
   {
     /* Datos de los elementos del Select */
@@ -48,7 +48,7 @@ export default function ControlPanel() {
 
   const handleChange = (event: SelectChangeEvent) => {
     let idx = parseInt(event.target.value);
-    setSelected(idx);
+    //setSelected(idx);
 
     {
       /* Modificación de la referencia */

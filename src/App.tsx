@@ -4,8 +4,6 @@ import Indicator from "./components/Indicator";
 import Summary from "./components/Summary";
 import BasicTable from "./components/BasicTable";
 import Navbar from "./components/Navbar";
-import CardMedia from "@mui/material/CardMedia";
-import bars from "./assets/barras.png";
 import WeatherChart from "./components/WeatherChart";
 import ControlPanel from "./components/ControlPanel";
 
