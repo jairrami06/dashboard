@@ -5,7 +5,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useState, useEffect } from 'react';
 
+/*
 function createData(
   time: string,
   temp: number,
@@ -21,29 +23,45 @@ const rows = [
   createData("Eclair", 262, 16.0, 24),
   createData("Cupcake", 305, 3.7, 67),
   createData("Gingerbread", 356, 16.0, 49),
-];
+];*/
 
-export default function BasicTable() {
+
+interface Config {
+  rows: Array<object>;
+}
+
+export default function BasicTable( data:Config ) {
+  let [rows, setRows] = useState<object[]>([])
+
+  useEffect( () => {
+
+    (()=> {
+
+        setRows(data.rows)
+
+    })()
+
+}, [data] )
+
   return (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Time</TableCell>
-            <TableCell>Temperature (°C)</TableCell>
-            <TableCell>Humidity (%)</TableCell>
-            <TableCell>Wind Speed (m/s)</TableCell>
+          <TableCell>Rango de horas</TableCell>
+          <TableCell align="right">Dirección del viento</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell>{row.time}</TableCell>
-              <TableCell>{row.temp}</TableCell>
-              <TableCell>{row.humidity}</TableCell>
-              <TableCell>{row.wind}</TableCell>
-            </TableRow>
-          ))}
+        {rows.map((row) => (
+                 <TableRow
+                     key={row.rangeHours}>
+                     <TableCell component="th" scope="row">
+                         {row.rangeHours}
+                     </TableCell>
+                     <TableCell align="right">{row.windDirection}</TableCell>
+                 </TableRow>
+             ))}
         </TableBody>
       </Table>
     </TableContainer>
