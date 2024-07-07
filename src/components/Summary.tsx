@@ -24,7 +24,7 @@ const Summary = () => {
     title = "Noche";
   }
 
-  const timeText = now.toLocaleTimeString();  
+  const timeText = now.toLocaleTimeString();
 
   return (
     <Card sx={{ maxWidth: 345 }}>

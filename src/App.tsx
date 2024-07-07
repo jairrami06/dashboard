@@ -86,16 +86,18 @@ function App() {
               timeElement
                 .getElementsByTagName("windDirection")[0]
                 .getAttribute("code");
-            let temperatureKelvin =
-              parseFloat(
-                timeElement
-                  .getElementsByTagName("temperature")[0]
-                  .getAttribute("value")
-              );
-            let temperatureCelsius = (temperatureKelvin - 273.15).toFixed(2) + "°C";
+            let temperatureKelvin = parseFloat(
+              timeElement
+                .getElementsByTagName("temperature")[0]
+                .getAttribute("value")
+            );
+            let temperatureCelsius =
+              (temperatureKelvin - 273.15).toFixed(2) + "°C";
 
             let humidity = parseFloat(
-              timeElement.getElementsByTagName("humidity")[0].getAttribute("value")
+              timeElement
+                .getElementsByTagName("humidity")[0]
+                .getAttribute("value")
             );
 
             let cloudiness = parseFloat(
@@ -124,7 +126,6 @@ function App() {
           data.cloudiness,
         ]);
         setChartData([["Hora", "Humedad", "Nubosidad"], ...chartDataArray]);
-
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -151,8 +152,7 @@ function App() {
             {indicator}
           </Grid>
         ))}
-        <Grid item xs={12} id="resumen">
-        </Grid>
+        <Grid item xs={12} id="resumen"></Grid>
         <Grid xs={12} md={6} lg={3}>
           <Summary />
         </Grid>
@@ -164,7 +164,7 @@ function App() {
         <Grid xs={12} md={12} lg={12}>
           <BasicTable rows={rowsTable} />
         </Grid>
-        
+
         <Grid item xs={12} id="grafico">
           <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2 }}>
             Diagrama de Nubosidad vs Humedad
