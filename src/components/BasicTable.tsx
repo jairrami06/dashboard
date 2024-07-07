@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -5,65 +6,50 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useState, useEffect } from 'react';
-
-/*
-function createData(
-  time: string,
-  temp: number,
-  humidity: number,
-  wind: number
-) {
-  return { time, temp, humidity, wind };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24),
-  createData("Ice cream sandwich", 237, 9.0, 37),
-  createData("Eclair", 262, 16.0, 24),
-  createData("Cupcake", 305, 3.7, 67),
-  createData("Gingerbread", 356, 16.0, 49),
-];*/
-
 
 interface Config {
-  rows: Array<object>;
+  rows: Array<{
+    date: string;
+    time: string;
+    windSpeed: string;
+    windDirection: string;
+    temperature: string;
+  }>;
 }
 
-export default function BasicTable( data:Config ) {
-  let [rows, setRows] = useState<object[]>([])
+const BasicTable: React.FC<Config> = ({ rows }) => {
+  const [tableRows, setTableRows] = useState(rows);
 
-  useEffect( () => {
-
-    (()=> {
-
-        setRows(data.rows)
-
-    })()
-
-}, [data] )
+  useEffect(() => {
+    setTableRows(rows);
+  }, [rows]);
 
   return (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
-          <TableCell>Rango de horas</TableCell>
-          <TableCell align="right">Dirección del viento</TableCell>
+            <TableCell>Fecha</TableCell>
+            <TableCell>Rango de horas</TableCell>
+            <TableCell align="right">Velocidad del viento</TableCell>
+            <TableCell align="right">Dirección del viento</TableCell>
+            <TableCell align="right">Temperatura</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-        {rows.map((row) => (
-                 <TableRow
-                     key={row.rangeHours}>
-                     <TableCell component="th" scope="row">
-                         {row.rangeHours}
-                     </TableCell>
-                     <TableCell align="right">{row.windDirection}</TableCell>
-                 </TableRow>
-             ))}
+          {tableRows.map((row, index) => (
+            <TableRow key={index}>
+              <TableCell>{row.date}</TableCell>
+              <TableCell>{row.time}</TableCell>
+              <TableCell align="right">{row.windSpeed}</TableCell>
+              <TableCell align="right">{row.windDirection}</TableCell>
+              <TableCell align="right">{row.temperature}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
+
+export default BasicTable;
