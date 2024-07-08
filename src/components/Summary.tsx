@@ -24,8 +24,8 @@ const Summary = () => {
     title = "Noche";
   }
 
-  const timeText = now.toLocaleTimeString();
-
+  const options: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit' };
+const timeText = now.toLocaleTimeString(undefined, options);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>

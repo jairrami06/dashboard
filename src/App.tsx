@@ -11,9 +11,18 @@ import Typography from "@mui/material/Typography";
 
 function App() {
   let [indicators, setIndicators] = useState<JSX.Element[]>([]);
-  let [rowsTable, setRowsTable] = useState<object[]>([]);
   let [chartData, setChartData] = useState([]);
   let [selectedVariable, setSelectedVariable] = useState<string | null>(null);
+
+  const initialRows: Array<{
+    date: string;
+    time: string;
+    windSpeed: string;
+    windDirection: string;
+    temperature: string;
+  }> = [];
+  
+  const [rowsTable, setRowsTable] = useState(initialRows);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -142,7 +151,7 @@ function App() {
     <>
       <Navbar />
       <Grid container spacing={5} sx={{ mt: 10 }}>
-        <Grid item xs={12} id="indicadores">
+        <Grid xs={12} id="indicadores">
           <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
             Inicio
           </Typography>
@@ -152,11 +161,11 @@ function App() {
             {indicator}
           </Grid>
         ))}
-        <Grid item xs={12} id="resumen"></Grid>
+        <Grid xs={12} id="resumen"></Grid>
         <Grid xs={12} md={6} lg={3}>
           <Summary />
         </Grid>
-        <Grid item xs={12} id="tabla">
+        <Grid xs={12} id="tabla">
           <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2 }}>
             Tabla de pronóstico para mañana
           </Typography>
@@ -165,7 +174,7 @@ function App() {
           <BasicTable rows={rowsTable} />
         </Grid>
 
-        <Grid item xs={12} id="grafico">
+        <Grid xs={12} id="grafico">
           <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2 }}>
             Diagrama de Nubosidad vs Humedad
           </Typography>
